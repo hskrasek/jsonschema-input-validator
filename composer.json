@@ -1,0 +1,17 @@
+{
+    "name": "hskrasek/jsonschema-input-validator",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hunter Skrasek",
+            "email": "hunterskrasek@me.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
