@@ -15,7 +15,7 @@ final class ProblemDetails implements \JsonSerializable
     private $status;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $detail;
 
@@ -24,7 +24,7 @@ final class ProblemDetails implements \JsonSerializable
      */
     private $extensions;
 
-    public function __construct(string $title, int $status, string $detail, array $extensions = [])
+    public function __construct(string $title, int $status, ?string $detail, array $extensions = [])
     {
         $this->title      = $title;
         $this->status     = $status;
