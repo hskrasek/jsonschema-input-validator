@@ -62,12 +62,12 @@ class Validator
         return $this->validator->errors();
     }
 
-    public function getProblemDetails(): ProblemDetails
+    public function getProblemDetails(?string $title = null, ?int $status = null, ?string $detail = null): ProblemDetails
     {
         return new ProblemDetails(
-            'Provided data didn\'t validate',
-            400,
-            null,
+            $title ?? 'Provided data didn\'t validate',
+            $status ?? 400,
+            $detail,
             ['invalid-params' => $this->getContextForProblemDetails()]
         );
     }
@@ -79,9 +79,9 @@ class Validator
     {
         return array_reduce($this->errors(), function (array $carry, ValidationError $error) {
             $carry[] = [
-                'name'   => $error->getSchemaPath(),
-                'reason' => $error->getMessage(),
-                'path'   => $error->getDataPath(),
+                'name'        => $error->getDataPath(),
+                'reason'      => $error->getMessage(),
+                'schema_path' => $error->getSchemaPath(),
             ];
 
             return $carry;
