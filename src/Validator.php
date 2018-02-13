@@ -64,6 +64,27 @@ class Validator
 
     public function getProblemDetails(): ProblemDetails
     {
-        //TODO Implement method
+        return new ProblemDetails(
+            'Provided data didn\'t validate',
+            400,
+            null,
+            ['invalid-params' => $this->getContextForProblemDetails()]
+        );
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getContextForProblemDetails(): array
+    {
+        return array_reduce($this->errors(), function (array $carry, ValidationError $error) {
+            $carry[] = [
+                'name'   => $error->getSchemaPath(),
+                'reason' => $error->getMessage(),
+                'path'   => $error->getDataPath(),
+            ];
+
+            return $carry;
+        }, []);
     }
 }
