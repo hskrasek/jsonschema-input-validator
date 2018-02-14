@@ -62,8 +62,20 @@ class Validator
         return $this->validator->errors();
     }
 
-    public function getProblemDetails(?string $title = null, ?int $status = null, ?string $detail = null): ProblemDetails
-    {
+    /**
+     * Get a Problem Details object describing the errors with the validated data
+     *
+     * @param null|string $title
+     * @param int|null $status
+     * @param null|string $detail
+     *
+     * @return ProblemDetails
+     */
+    public function getProblemDetails(
+        ?string $title = null,
+        ?int $status = null,
+        ?string $detail = null
+    ): ProblemDetails {
         return new ProblemDetails(
             $title ?? 'Provided data didn\'t validate',
             $status ?? 400,
