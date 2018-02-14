@@ -1,0 +1,5 @@
+{
+    "foo": "greaterthaneightcharacters",
+    "bar": 5,
+    "baz": ["all", "these", "are", "strings"]
+}

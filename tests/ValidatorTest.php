@@ -47,4 +47,18 @@ class ValidatorTest extends TestCase
             ],
         ], $problemDetails->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function itPassesWhenTheDataIsCorrect()
+    {
+        $data   = json_decode(file_get_contents(__DIR__ . '/stubs/correct.json'));
+        $schema = json_decode(file_get_contents(__DIR__ . '/stubs/schema.json'));
+
+        $validator = new Validator($data, $schema);
+
+        $this->assertFalse($validator->fails());
+        $this->assertTrue($validator->passes());
+    }
 }
