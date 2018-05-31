@@ -77,7 +77,7 @@ class Validator
         ?string $detail = null
     ): ProblemDetails {
         return new ProblemDetails(
-            $title ?? 'Provided data didn\'t validate',
+            $title ?? 'Validation errors were found',
             $status ?? 400,
             $detail,
             ['invalid-params' => $this->getContextForProblemDetails()]
@@ -91,9 +91,9 @@ class Validator
     {
         return array_reduce($this->errors(), function (array $carry, ValidationError $error) {
             $carry[] = [
-                'name'        => $error->getDataPath(),
-                'reason'      => $error->getMessage(),
-                'schema_path' => $error->getSchemaPath(),
+                'name'    => $error->getDataPath(),
+                'reason'  => $error->getMessage(),
+                'pointer' => $error->getSchemaPath(),
             ];
 
             return $carry;
